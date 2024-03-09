@@ -2,8 +2,8 @@ const FilterReducer = (state, action) => {
     switch (action.type) {
         case "ALL_FILTER_PRODUCTS":
             let prices = action.payload.map(product => product.price);
-            let max = Math.max(...prices) / 100;
-            let min = Math.min(...prices) / 100;
+            let max = Math.max(...prices);
+            let min = Math.min(...prices);
             return {
                 ...state,
                 filter_products : [...action.payload],
@@ -85,7 +85,7 @@ const FilterReducer = (state, action) => {
             let { all_products } = state;
             let tempFilterProduct = [...all_products];
 
-            const { text, category, company, colors } = state.filters;
+            const { text, category, company, colors, price } = state.filters;
             if (text) {
                 tempFilterProduct = tempFilterProduct.filter((curElem) => {
                     return curElem.name.toLowerCase().includes(text);
@@ -106,9 +106,25 @@ const FilterReducer = (state, action) => {
                     return curElem.colors.includes(colors);
                 });
             }
+            if (price) {
+                tempFilterProduct = tempFilterProduct.filter((curElem) => {
+                    return curElem.price <= price;
+                });
+            }
             return {
                 ...state,
                 filter_products : tempFilterProduct,
+            }
+        case "CLEAR_FILTERS":
+            return {
+                ...state,
+                filters : {
+                    ...state.filters,
+                    text : "",
+                    category : "all",
+                    company : "all",
+                    colors : "all",
+                }
             }
 
         default:

@@ -3,7 +3,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Contact = () => {
   const { isAuthenticated, user } = useAuth0();
-  console.log(user);
   return (
     <Wrapper>
       <h2 className="common-heading">Contact page</h2>

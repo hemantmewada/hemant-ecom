@@ -3,9 +3,11 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { useFilterContext } from '../context/filtercontext';
 import { FaCheck } from "react-icons/fa";
+import PriceConverter from '../helpers/PriceConverter';
+import { Button } from "./styles/Button";
 
 const FilterSection = () => {
-  const { filters: { text, category, colors },updateFilterValue, all_products } = useFilterContext();
+  const { filters: { text, category, colors, price, maxPrice, minPrice },updateFilterValue, all_products, clearFilters } = useFilterContext();
   const getUniqueData = (data, attr) => {
     let newSortedArray;
     newSortedArray = data.map((curElem) => {
@@ -105,7 +107,12 @@ const FilterSection = () => {
 
       <div className="filter_price">
         <h3>Price</h3>
-        <input type="range" name="" id="" />
+        <p><PriceConverter price={price} /></p>
+        <input type="range" min={minPrice} max={maxPrice} name='price' onChange={updateFilterValue} />
+      </div>
+
+      <div className="filter-clear">
+        <Button className='btn' onClick={clearFilters}> clear filters </Button>
       </div>
 
     </Wrapper>

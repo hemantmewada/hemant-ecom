@@ -11,7 +11,6 @@ const Nav = () => {
   const [menuIcon, setMenuIcon] = useState(false);
   const { total_item } = useCartContext();
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
-  // console.log("user",user);
   
     return (
       <NavVariable>
