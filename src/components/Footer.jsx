@@ -66,7 +66,7 @@ const Footer = () => {
             <hr />
             <div className="container grid grid-two-column ">
               <p>
-                @{new Date().getFullYear()} All Rights Reserved
+                @{new Date().getFullYear()} All Rights Reserved | created by <a style={{color : "#FFF", textDecoration : "underline"}} target="_blank" href="https://www.linkedin.com/in/hemant-mewada/">Hemant Mewada</a>
               </p>
               <div>
                 <p>PRIVACY POLICY</p>
